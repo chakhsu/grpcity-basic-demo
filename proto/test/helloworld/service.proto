@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package test.helloworld;
+
+import "test/helloworld/model/message.proto";
+
+// The greeting service definition.
+service Greeter {
+  rpc SayGreet(model.HelloRequest) returns (model.HelloReply) {}
+}
+
+service Hellor {
+  rpc SayHello(model.HelloRequest) returns (model.HelloReply) {}
+}
