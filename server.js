@@ -18,7 +18,7 @@ class Greeter {
         this.count++
         
         return {
-            message: `hello ${name || "world"} by Greeter`,
+            message: `hello ${name || "world"} by Greeter in server1`,
             count: this.count
         }
     }
@@ -38,7 +38,7 @@ class Hellor {
 
     async sayHello(ctx) {
         const { name } = ctx.request
-        return { message: `hello ${name || "world"} by Hellor` }
+        return { message: `hello ${name || "world"} by Hellor in server1` }
     }
 }
 
@@ -53,4 +53,4 @@ const start = async (addr) => {
     console.log('gRPC Server is started: ', addr)
 }
 
-start('127.0.0.1:9099')
+start('127.0.0.1:9098')
