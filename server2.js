@@ -13,11 +13,11 @@ const Greeter = {
 }
 
 const Hellor = {
-    sayHello: async (ctx) => {
+    sayHello: (ctx, callback) => {
         const { name } = ctx.request
-        return { 
+        callback(null, {
             message: `hello ${name || "world"} by Hellor in server2` 
-        }
+        })
     }
 }
 
