@@ -13,14 +13,14 @@ const start = async (server1Addr, server2Addr) => {
     // server1
     // greeter client
     const server1Client = loader.client('test.helloworld.Greeter')
-    const server1Result = await server1Client.sayGreet({ name: 'greeter' })
-    console.log('server1Client.sayGreet', server1Result)
+    const greetResult = await server1Client.sayGreet({ name: 'greeter' })
+    console.log('server1Client.sayGreet', greetResult.response)
 
     // server2
     // hellor client
     const server2Client = loader.client('test.helloworld.Hellor')
     const hellorResult = await server2Client.sayHello({ name: 'hellor' })
-    console.log('server2Client.sayHello', hellorResult)
+    console.log('server2Client.sayHello', hellorResult.response)
 
 }
 
