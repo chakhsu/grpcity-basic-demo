@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "grpcity": "^0.7.1"
+    "grpcity": "^0.9.3"
   }
 }
