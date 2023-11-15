@@ -16,7 +16,7 @@ const Hellor = {
     sayHello: (ctx, callback) => {
         const { name } = ctx.request
         callback(null, {
-            message: `hello ${name || "world"} by Hellor in server2` 
+            message: `hello ${name || "world"} by Hellor in server2`
         })
     }
 }
@@ -25,8 +25,8 @@ const start = async (addr) => {
     await loader.init()
 
     const server = loader.initServer()
-    server.addService(loader.service('test.helloworld.Greeter'), loader.callbackify(Greeter))
-    server.addService(loader.service('test.helloworld.Hellor'), loader.callbackify(Hellor))
+    server.addService('test.helloworld.Greeter', Greeter)
+    server.addService('test.helloworld.Hellor', Hellor)
 
     await server.listen(addr)
     console.log('gRPC Server is started: ', addr)

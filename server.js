@@ -7,16 +7,13 @@ class Greeter {
     }
 
     init(server) {
-        server.addService(
-            this._loader.service("test.helloworld.Greeter"),
-            this._loader.callbackify(this, { exclude: ["init"] })
-        )
+        server.addService("test.helloworld.Greeter", this, { exclude: ["init"] })
     }
 
     async sayGreet(ctx) {
         const { name } = ctx.request
         this.count++
-        
+
         return {
             message: `hello ${name || "world"} by Greeter in server1`,
             count: this.count
@@ -30,10 +27,7 @@ class Hellor {
     }
 
     init(server) {
-        server.addService(
-            this._loader.service("test.helloworld.Hellor"),
-            this._loader.callbackify(this, { exclude: ["init"] })
-        )
+        server.addService("test.helloworld.Hellor", this, { exclude: ["init"] })
     }
 
     async sayHello(ctx) {
