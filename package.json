@@ -10,6 +10,6 @@
   "author": "Chakhsu.Lau",
   "license": "MIT",
   "dependencies": {
-    "grpcity": "^1.1.1"
+    "grpcity": "^1.2.1"
   }
 }
