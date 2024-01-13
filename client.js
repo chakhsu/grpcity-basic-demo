@@ -1,27 +1,24 @@
 import loader from "./loader.js"
 
-const start = async (server1Addr, server2Addr) => {
+const start = async (addr) => {
     await loader.init()
 
-    await loader.initClients({
+    const clients = await loader.initClients({
         services: {
-            'test.helloworld.Greeter': server1Addr,
-            'test.helloworld.Hellor': server2Addr
+            'helloworld.Greeter': addr,
+            'helloworld.Hellor': addr
         }
     })
 
-    // server1
     // greeter client
-    const server1Client = loader.client('test.helloworld.Greeter')
-    const greetResult = await server1Client.sayGreet({ name: 'greeter' })
-    console.log('server1Client.sayGreet', greetResult.response)
+    const greeterClient = clients.get('helloworld.Greeter')
+    const greeterResult = await greeterClient.sayGreet({ name: 'greeter' })
+    console.log('greeterClient.sayGreet', greeterResult.response)
 
-    // server2
     // hellor client
-    const server2Client = loader.client('test.helloworld.Hellor')
-    const hellorResult = await server2Client.sayHello({ name: 'hellor' })
-    console.log('server2Client.sayHello', hellorResult.response)
-
+    const hellorClient = clients.get('helloworld.Hellor')
+    const hellorResult = await hellorClient.sayHello({ name: 'hellor' })
+    console.log('hellorClient.sayHello', hellorResult.response)
 }
 
-start('127.0.0.1:9098', '127.0.0.1:9099')
+start('127.0.0.1:9098')

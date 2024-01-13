@@ -1,13 +1,13 @@
-import GrpcLoader from 'grpcity'
+import { ProtoLoader } from 'grpcity'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 
-// get this file dir path
+// __dirname for esm
+import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-export default new GrpcLoader({
+export default new ProtoLoader({
     location: path.join(__dirname, './proto'),
     files: [
-        'test/helloworld/service.proto'
+        'helloworld/service.proto'
     ]
 })

@@ -5,41 +5,33 @@ class Greeter {
         this.count = 0
     }
 
-    init(server) {
-        server.addService("test.helloworld.Greeter", this, { exclude: ["init"] })
-    }
-
-    async sayGreet(ctx) {
-        const { name } = ctx.request
+    async sayGreet(call) {
+        const { name } = call.request
         this.count++
-
         return {
-            message: `hello ${name || "world"} by Greeter in server1`,
+            message: `hello ${name || "world"} by Greeter`,
             count: this.count
         }
     }
 }
 
 class Hellor {
-    init(server) {
-        server.addService("test.helloworld.Hellor", this, { exclude: ["init"] })
-    }
-
-    async sayHello(ctx) {
-        const { name } = ctx.request
-        return { message: `hello ${name || "world"} by Hellor in server1` }
+    async sayHello(call) {
+        const { name } = call.request
+        return { message: `hello ${name || "world"} by Hellor` }
     }
 }
 
 const start = async (addr) => {
     await loader.init()
 
-    const server = loader.initServer()
-    const servicers = [new Greeter(), new Hellor()]
-    await Promise.all(servicers.map(async s => s.init(server)))
+    const server = await loader.initServer()
+
+    server.add('helloworld.Greeter', new Greeter())
+    server.add('helloworld.Hellor', new Hellor())
 
     await server.listen(addr)
-    console.log('gRPC Server is started: ', addr)
+    console.log('helloworld server is started: ', addr)
 }
 
 start('127.0.0.1:9098')

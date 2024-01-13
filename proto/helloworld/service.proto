@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package helloworld;
+
+import "helloworld/model/message.proto";
+
+service Greeter {
+  rpc SayGreet(HelloRequest) returns (HelloReply) {}
+}
+
+service Hellor {
+  rpc SayHello(HelloRequest) returns (HelloReply) {}
+}
