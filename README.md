@@ -10,7 +10,6 @@ npm i
 
 ```
 node server.js
-node server2.js
 ```
 
 ### Start client
