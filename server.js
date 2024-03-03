@@ -22,10 +22,17 @@ class Hellor {
     }
 }
 
+const log = async (ctx, next) => {
+    console.log(ctx)
+    await next()
+    console.log(ctx)
+}
+
 const start = async (addr) => {
     await loader.init()
 
     const server = await loader.initServer()
+    server.use(log)
 
     server.add('helloworld.Greeter', new Greeter())
     server.add('helloworld.Hellor', new Hellor())
